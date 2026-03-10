@@ -1,0 +1,209 @@
+---
+import type { Lang } from '../i18n/utils';
+import { useTranslations, getLocaleUrl } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const alternateLang: Lang = lang === 'en' ? 'es' : 'en';
+const alternateUrl = getLocaleUrl(alternateLang);
+
+const navLinks = [
+  { href: `#work`, label: t.nav.work },
+  { href: `#products`, label: t.nav.products },
+  { href: `#services`, label: t.nav.services },
+  { href: `#blog`, label: t.nav.blog },
+  { href: `#contact`, label: t.nav.contact },
+];
+---
+
+<header
+  id="nav"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+  role="banner"
+>
+  <div class="section-container">
+    <nav
+      class="flex items-center justify-between h-16 md:h-18"
+      aria-label="Main navigation"
+    >
+      <!-- Logo / Name -->
+      <a
+        href={getLocaleUrl(lang)}
+        class="font-semibold text-lg text-text tracking-tight hover:text-primary transition-colors duration-200 focus-visible:outline-offset-4"
+        aria-label="Angel Almanza - Home"
+      >
+        <span class="gradient-text">Angel</span
+        ><span class="text-muted">.dev</span>
+      </a>
+
+      <!-- Desktop nav links -->
+      <ul class="hidden md:flex items-center gap-6 list-none m-0 p-0" role="list">
+        {
+          navLinks.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class="text-sm font-medium text-muted hover:text-text transition-colors duration-200"
+              >
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+
+      <!-- Right side: lang toggle + CTA -->
+      <div class="flex items-center gap-3">
+        <!-- Language toggle -->
+        <a
+          href={alternateUrl}
+          class="hidden sm:flex items-center gap-1.5 text-xs font-medium px-2.5 py-1.5 rounded-md border border-border text-muted hover:text-text hover:border-primary transition-all duration-200"
+          aria-label={`Switch to ${alternateLang === 'en' ? 'English' : 'Español'}`}
+          hreflang={alternateLang}
+        >
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="2" y1="12" x2="22" y2="12"/>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+          </svg>
+          {alternateLang.toUpperCase()}
+        </a>
+
+        <!-- Contact CTA -->
+        <a
+          href="#contact"
+          class="hidden sm:inline-flex items-center text-sm font-medium px-4 py-2 rounded-lg bg-primary text-white hover:bg-primary-hover transition-all duration-200"
+          data-magnetic
+        >
+          {t.nav.contact}
+        </a>
+
+        <!-- Mobile hamburger -->
+        <button
+          id="mobile-menu-btn"
+          class="flex md:hidden items-center justify-center w-9 h-9 rounded-lg border border-border text-muted hover:text-text hover:border-primary transition-all duration-200"
+          aria-label="Toggle menu"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+        >
+          <svg id="icon-open" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+          <svg id="icon-close" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="display:none">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Mobile menu -->
+  <div
+    id="mobile-menu"
+    class="hidden md:hidden border-t border-border-subtle bg-surface"
+    role="dialog"
+    aria-label="Mobile navigation"
+  >
+    <div class="section-container py-4 flex flex-col gap-1">
+      {
+        navLinks.map((link) => (
+          <a
+            href={link.href}
+            class="px-3 py-2.5 text-sm font-medium text-muted hover:text-text hover:bg-surface-2 rounded-lg transition-colors duration-200"
+          >
+            {link.label}
+          </a>
+        ))
+      }
+      <div class="flex items-center gap-2 pt-2 mt-1 border-t border-border-subtle">
+        <a
+          href={alternateUrl}
+          class="flex-1 text-center text-xs font-medium px-3 py-2 rounded-lg border border-border text-muted hover:border-primary hover:text-text transition-all"
+          hreflang={alternateLang}
+        >
+          {alternateLang.toUpperCase()} — {alternateLang === 'en' ? 'English' : 'Español'}
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<style>
+  #nav {
+    background: transparent;
+  }
+  #nav.scrolled {
+    background: color-mix(in srgb, var(--color-bg) 85%, transparent);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+</style>
+
+<script>
+  // Scroll effect
+  const nav = document.getElementById('nav');
+  const handleScroll = () => {
+    if (window.scrollY > 20) {
+      nav?.classList.add('scrolled');
+    } else {
+      nav?.classList.remove('scrolled');
+    }
+  };
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  handleScroll();
+
+  // Mobile menu toggle
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  const iconOpen = document.getElementById('icon-open');
+  const iconClose = document.getElementById('icon-close');
+
+  btn?.addEventListener('click', () => {
+    const isOpen = menu?.classList.contains('hidden') === false;
+    if (isOpen) {
+      menu?.classList.add('hidden');
+      iconOpen && (iconOpen.style.display = '');
+      iconClose && (iconClose.style.display = 'none');
+      btn.setAttribute('aria-expanded', 'false');
+    } else {
+      menu?.classList.remove('hidden');
+      iconOpen && (iconOpen.style.display = 'none');
+      iconClose && (iconClose.style.display = '');
+      btn.setAttribute('aria-expanded', 'true');
+    }
+  });
+
+  // Close mobile menu on link click
+  menu?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      menu?.classList.add('hidden');
+      iconOpen && (iconOpen.style.display = '');
+      iconClose && (iconClose.style.display = 'none');
+      btn?.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Magnetic buttons
+  document.querySelectorAll<HTMLElement>('[data-magnetic]').forEach((el) => {
+    el.addEventListener('mousemove', (e: MouseEvent) => {
+      const rect = el.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      const dist = Math.sqrt(x * x + y * y);
+      if (dist < 80) {
+        el.style.transform = `translate(${x * 0.25}px, ${y * 0.25}px)`;
+      }
+    });
+    el.addEventListener('mouseleave', () => {
+      el.style.transform = 'translate(0, 0)';
+    });
+  });
+</script>

@@ -1,0 +1,116 @@
+---
+import type { Lang } from '../i18n/utils';
+import { useTranslations, getLocaleUrl } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const footer = t.footer;
+
+const year = new Date().getFullYear();
+
+const navLinks = [
+  { href: '#work', label: t.nav.work },
+  { href: '#products', label: t.nav.products },
+  { href: '#services', label: t.nav.services },
+  { href: '#blog', label: t.nav.blog },
+  { href: '#contact', label: t.nav.contact },
+];
+---
+
+<footer
+  class="relative border-t border-border-subtle bg-surface"
+  role="contentinfo"
+>
+  <!-- Top glow line -->
+  <div
+    class="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-primary to-transparent opacity-30"
+    aria-hidden="true"
+  ></div>
+
+  <div class="section-container py-14">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
+      <!-- Brand column -->
+      <div>
+        <a
+          href={getLocaleUrl(lang)}
+          class="inline-block font-bold text-xl text-text tracking-tight mb-3"
+          aria-label="Angel Almanza Home"
+        >
+          <span class="gradient-text">Angel</span><span class="text-muted">.dev</span>
+        </a>
+        <p class="text-sm text-muted leading-relaxed max-w-xs">
+          {footer.tagline}
+        </p>
+      </div>
+
+      <!-- Quick links -->
+      <div>
+        <p class="text-xs font-semibold text-muted uppercase tracking-wider mb-4">
+          {footer.links_title}
+        </p>
+        <ul class="space-y-2.5 list-none p-0 m-0" role="list">
+          {navLinks.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class="text-sm text-muted hover:text-text transition-colors duration-200"
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Social links -->
+      <div>
+        <p class="text-xs font-semibold text-muted uppercase tracking-wider mb-4">
+          {footer.social_title}
+        </p>
+        <div class="flex gap-3">
+          {[
+            {
+              name: 'GitHub',
+              href: 'https://github.com',
+              icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>`,
+            },
+            {
+              name: 'LinkedIn',
+              href: 'https://linkedin.com',
+              icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>`,
+            },
+            {
+              name: 'YouTube',
+              href: 'https://youtube.com',
+              icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="white"/></svg>`,
+            },
+          ].map((s) => (
+            <a
+              href={s.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-9 h-9 rounded-lg flex items-center justify-center border border-border text-muted hover:text-text hover:border-primary transition-all duration-200"
+              aria-label={s.name}
+            >
+              <Fragment set:html={s.icon} />
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="pt-6 border-t border-border-subtle flex flex-col sm:flex-row items-center justify-between gap-3">
+      <p class="text-xs text-muted">
+        &copy; {year} Angel Almanza. {footer.rights}
+      </p>
+      <p class="text-xs text-muted">
+        {footer.built_with}
+      </p>
+    </div>
+  </div>
+</footer>

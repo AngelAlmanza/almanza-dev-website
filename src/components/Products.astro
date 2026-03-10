@@ -1,0 +1,123 @@
+---
+import type { Lang } from '../i18n/utils';
+import { useTranslations } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const products = t.products;
+
+// SVG icons per product
+const icons: Record<string, string> = {
+  pos: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+    <rect x="2" y="3" width="20" height="14" rx="2"/>
+    <path d="M8 21h8M12 17v4"/>
+    <path d="M6 8h.01M10 8h4M6 11h.01M10 11h4"/>
+  </svg>`,
+  gym: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+    <path d="M6.5 6.5h11M6.5 17.5h11M3 9.5h18M3 14.5h18"/>
+    <rect x="1" y="8" width="4" height="8" rx="1"/>
+    <rect x="19" y="8" width="4" height="8" rx="1"/>
+  </svg>`,
+  rocket: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+    <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
+    <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
+    <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
+    <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
+  </svg>`,
+};
+---
+
+<section
+  id="products"
+  class="py-28 relative bg-surface"
+  aria-labelledby="products-heading"
+  style="background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-surface) 10%, var(--color-surface) 90%, var(--color-bg) 100%);"
+>
+  <!-- Subtle grid overlay -->
+  <div class="absolute inset-0 grid-dots opacity-15 pointer-events-none" aria-hidden="true"></div>
+
+  <div class="section-container relative z-10">
+    <!-- Section header -->
+    <div class="mb-14 text-center" data-reveal>
+      <span class="inline-block text-xs font-semibold tracking-widest uppercase text-primary mb-3">
+        {products.section_label}
+      </span>
+      <h2
+        id="products-heading"
+        class="text-3xl sm:text-4xl md:text-5xl font-bold text-text leading-tight mb-4"
+      >
+        {products.section_title}
+        <span class="gradient-text">{products.section_title_accent}</span>
+      </h2>
+      <p class="text-muted max-w-lg mx-auto text-base">
+        {lang === 'en'
+          ? 'Battle-tested solutions you can license and deploy in your business today.'
+          : 'Soluciones probadas que puedes licenciar y desplegar en tu negocio hoy mismo.'}
+      </p>
+    </div>
+
+    <!-- 3-Column Product Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {products.items.map((item, i) => (
+        <article
+          data-reveal
+          data-reveal-delay={`${i + 1}`}
+          class="group relative flex flex-col rounded-xl border border-border bg-bg p-7 card-hover overflow-hidden"
+          aria-label={item.name}
+        >
+          <!-- Top glow line -->
+          <div
+            class="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-primary to-transparent opacity-0 group-hover:opacity-80 transition-opacity duration-500"
+            aria-hidden="true"
+          ></div>
+
+          <!-- Icon -->
+          <div
+            class="w-12 h-12 rounded-xl flex items-center justify-center mb-5 text-primary transition-colors duration-300 group-hover:text-secondary"
+            style="background: color-mix(in srgb, var(--color-primary) 10%, transparent); border: 1px solid color-mix(in srgb, var(--color-primary) 20%, transparent);"
+            aria-hidden="true"
+          >
+            <Fragment set:html={icons[item.icon]} />
+          </div>
+
+          <!-- Badge -->
+          <span
+            class="inline-flex items-center gap-1.5 w-fit px-2.5 py-1 rounded-full text-[10px] font-semibold tracking-wide uppercase mb-4"
+            style="background: color-mix(in srgb, var(--color-accent) 12%, transparent); color: var(--color-accent); border: 1px solid color-mix(in srgb, var(--color-accent) 25%, transparent);"
+          >
+            <span class="w-1.5 h-1.5 rounded-full bg-accent" aria-hidden="true"></span>
+            {products.badge}
+          </span>
+
+          <!-- Name + description -->
+          <h3 class="text-lg font-semibold text-text leading-snug mb-2">
+            {item.name}
+          </h3>
+          <p class="text-sm text-muted leading-relaxed flex-1 mb-6">
+            {item.description}
+          </p>
+
+          <!-- CTAs -->
+          <div class="flex flex-col sm:flex-row gap-2 mt-auto">
+            <a
+              href="#contact"
+              class="flex-1 text-center px-4 py-2.5 rounded-lg text-sm font-medium text-primary border border-primary hover:bg-primary hover:text-white transition-all duration-200"
+            >
+              {products.cta_demo}
+            </a>
+            <a
+              href="#contact"
+              class="flex-1 text-center px-4 py-2.5 rounded-lg text-sm font-semibold text-white bg-primary hover:bg-primary-hover transition-all duration-200"
+            >
+              {products.cta_buy}
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

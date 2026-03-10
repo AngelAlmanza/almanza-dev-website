@@ -1,0 +1,211 @@
+---
+import type { Lang } from '../i18n/utils';
+import { useTranslations } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const contact = t.contact;
+---
+
+<section
+  id="contact"
+  class="py-28 relative overflow-hidden"
+  aria-labelledby="contact-heading"
+>
+  <!-- Glow background -->
+  <div
+    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-150 h-100 rounded-full pointer-events-none"
+    style="background: radial-gradient(ellipse, color-mix(in srgb, var(--color-primary) 6%, transparent) 0%, transparent 70%);"
+    aria-hidden="true"
+  ></div>
+
+  <div class="section-container relative z-10">
+    <!-- Section header -->
+    <div class="max-w-2xl mx-auto text-center mb-14" data-reveal>
+      <span class="inline-block text-xs font-semibold tracking-widest uppercase text-primary mb-3">
+        {contact.section_label}
+      </span>
+      <h2
+        id="contact-heading"
+        class="text-3xl sm:text-4xl md:text-5xl font-bold text-text leading-tight mb-4"
+      >
+        {contact.section_title}
+        <span class="gradient-text"> {contact.section_title_accent}</span>
+      </h2>
+      <p class="text-muted text-base leading-relaxed">
+        {contact.description}
+      </p>
+
+      <!-- Availability pill -->
+      <div class="inline-flex items-center gap-2 mt-4 px-4 py-1.5 rounded-full border border-border bg-surface">
+        <span class="w-2 h-2 rounded-full bg-accent animate-pulse" aria-hidden="true"></span>
+        <span class="text-xs font-medium text-muted">{contact.availability}</span>
+      </div>
+    </div>
+
+    <!-- Form + Aside layout -->
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 max-w-5xl mx-auto">
+      <!-- Contact Form (3 cols) -->
+      <div
+        data-reveal
+        data-reveal-delay="1"
+        class="lg:col-span-3 rounded-xl border border-border bg-surface p-7 md:p-8"
+      >
+        <form
+          name="contact"
+          method="POST"
+          class="space-y-5"
+          novalidate
+          aria-label="Contact form"
+        >
+          <div>
+            <label
+              for="name"
+              class="block text-sm font-medium text-text mb-1.5"
+            >
+              {contact.name_label}
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              autocomplete="name"
+              required
+              placeholder="Angel Almanza"
+              class="w-full px-4 py-3 rounded-lg bg-bg border border-border text-text text-sm placeholder:text-muted focus:outline-none focus:border-primary transition-colors duration-200"
+            />
+          </div>
+
+          <div>
+            <label
+              for="email"
+              class="block text-sm font-medium text-text mb-1.5"
+            >
+              {contact.email_label}
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              autocomplete="email"
+              required
+              placeholder="angel@company.com"
+              class="w-full px-4 py-3 rounded-lg bg-bg border border-border text-text text-sm placeholder:text-muted focus:outline-none focus:border-primary transition-colors duration-200"
+            />
+          </div>
+
+          <div>
+            <label
+              for="message"
+              class="block text-sm font-medium text-text mb-1.5"
+            >
+              {contact.message_label}
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              required
+              rows="5"
+              placeholder={contact.message_placeholder}
+              class="w-full px-4 py-3 rounded-lg bg-bg border border-border text-text text-sm placeholder:text-muted focus:outline-none focus:border-primary transition-colors duration-200 resize-y min-h-30"
+            ></textarea>
+          </div>
+
+          <button
+            type="submit"
+            class="w-full flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-primary text-white font-semibold text-sm hover:bg-primary-hover transition-all duration-200"
+            style="box-shadow: 0 0 20px color-mix(in srgb, var(--color-primary) 25%, transparent);"
+            data-magnetic
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <line x1="22" y1="2" x2="11" y2="13"/>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+            </svg>
+            {contact.submit}
+          </button>
+        </form>
+      </div>
+
+      <!-- Aside (2 cols) -->
+      <div
+        data-reveal
+        data-reveal-delay="2"
+        class="lg:col-span-2 flex flex-col gap-5"
+      >
+        <!-- Calendly -->
+        <div class="p-6 rounded-xl border border-border bg-surface">
+          <div class="w-10 h-10 rounded-lg flex items-center justify-center mb-4 text-primary"
+            style="background: color-mix(in srgb, var(--color-primary) 10%, transparent);"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+              <line x1="16" y1="2" x2="16" y2="6"/>
+              <line x1="8" y1="2" x2="8" y2="6"/>
+              <line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+          </div>
+          <p class="text-sm font-semibold text-text mb-1">
+            {lang === 'en' ? 'Prefer a call?' : '¿Prefieres llamar?'}
+          </p>
+          <p class="text-xs text-muted mb-4 leading-relaxed">
+            {lang === 'en'
+              ? 'Schedule a free 30-minute discovery call to discuss your project.'
+              : 'Agenda una llamada gratuita de 30 minutos para hablar de tu proyecto.'}
+          </p>
+          <a
+            href="#"
+            class="flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-lg border border-border text-sm font-medium text-text hover:border-primary hover:text-primary transition-all duration-200"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+            {contact.calendly}
+          </a>
+        </div>
+
+        <!-- Social links -->
+        <div class="p-6 rounded-xl border border-border bg-surface">
+          <p class="text-xs font-semibold text-muted uppercase tracking-wider mb-4">
+            {lang === 'en' ? 'Find me on' : 'Encuéntrame en'}
+          </p>
+          <div class="space-y-3">
+            {[
+              {
+                name: 'GitHub',
+                href: 'https://github.com/AngelAlmanza/',
+                icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>`,
+              },
+              {
+                name: 'LinkedIn',
+                href: 'https://www.linkedin.com/in/angel-almanza-62a764239/',
+                icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>`,
+              },
+              {
+                name: 'YouTube',
+                href: 'https://youtube.com',
+                icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="white"/></svg>`,
+              },
+            ].map((social) => (
+              <a
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center gap-3 p-2.5 rounded-lg text-sm text-muted hover:text-text hover:bg-surface-2 transition-all duration-200"
+                aria-label={social.name}
+              >
+                <span class="text-primary">
+                  <Fragment set:html={social.icon} />
+                </span>
+                {social.name}
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

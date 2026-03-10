@@ -1,0 +1,183 @@
+---
+import type { Lang } from '../i18n/utils';
+import { useTranslations } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const cases = t.cases;
+---
+
+<section
+  id="work"
+  class="py-28 relative"
+  aria-labelledby="cases-heading"
+>
+  <div class="section-container">
+    <!-- Section header -->
+    <div class="mb-14" data-reveal>
+      <span class="inline-block text-xs font-semibold tracking-widest uppercase text-primary mb-3">
+        {cases.section_label}
+      </span>
+      <h2
+        id="cases-heading"
+        class="text-3xl sm:text-4xl md:text-5xl font-bold text-text leading-tight"
+      >
+        {cases.section_title}
+        <span class="gradient-text">{cases.section_title_accent}</span>
+      </h2>
+    </div>
+
+    <!-- Bento Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 auto-rows-auto">
+      <!-- Case 1 — Large card (2 cols) -->
+      <article
+        data-reveal
+        data-reveal-delay="1"
+        class="lg:col-span-2 relative rounded-xl border border-border bg-surface p-7 md:p-8 card-hover overflow-hidden group"
+        aria-label={cases.items[0].title}
+      >
+        <!-- Glow accent -->
+        <div
+          class="absolute top-0 left-0 w-full h-px bg-linear-to-r from-transparent via-primary to-transparent opacity-60"
+          aria-hidden="true"
+        ></div>
+        <div
+          class="absolute -top-20 -right-20 w-60 h-60 rounded-full pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+          style="background: radial-gradient(circle, color-mix(in srgb, var(--color-primary) 10%, transparent) 0%, transparent 70%);"
+          aria-hidden="true"
+        ></div>
+
+        <!-- Category badge -->
+        <div class="flex items-center justify-between mb-5">
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-surface-2 text-xs font-medium text-primary border border-border-subtle">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="var(--color-primary)" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"/>
+            </svg>
+            {cases.items[0].category}
+          </span>
+          <!-- Big metric -->
+          <div class="text-right">
+            <div class="text-3xl font-bold gradient-text leading-none">{cases.items[0].metric}</div>
+            <div class="text-[10px] text-muted mt-0.5 max-w-27.5 text-right leading-tight">{cases.items[0].metric_label}</div>
+          </div>
+        </div>
+
+        <h3 class="text-xl md:text-2xl font-semibold text-text leading-snug mb-5">
+          {cases.items[0].title}
+        </h3>
+
+        <div class="grid sm:grid-cols-2 gap-4 mb-6">
+          <div class="p-4 rounded-lg bg-surface-2 border border-border-subtle">
+            <p class="text-xs font-semibold text-muted uppercase tracking-wider mb-1.5">
+              {cases.challenge}
+            </p>
+            <p class="text-sm text-muted leading-relaxed">
+              {cases.items[0].challenge}
+            </p>
+          </div>
+          <div class="p-4 rounded-lg bg-surface-2 border border-border-subtle">
+            <p class="text-xs font-semibold text-accent uppercase tracking-wider mb-1.5">
+              {cases.impact}
+            </p>
+            <p class="text-sm text-muted leading-relaxed">
+              {cases.items[0].impact}
+            </p>
+          </div>
+        </div>
+
+        <!-- Tech stack -->
+        <div class="flex flex-wrap gap-2" aria-label={cases.tech_label}>
+          {cases.items[0].tech.map((tech) => (
+            <span class="px-2.5 py-1 text-xs font-medium text-muted border border-border-subtle rounded-md bg-bg">
+              {tech}
+            </span>
+          ))}
+        </div>
+      </article>
+
+      <!-- Case 2 — Medium card (1 col) -->
+      <article
+        data-reveal
+        data-reveal-delay="2"
+        class="relative rounded-xl border border-border bg-surface p-7 card-hover overflow-hidden group"
+        aria-label={cases.items[1].title}
+      >
+        <div
+          class="absolute top-0 left-0 w-full h-px bg-linear-to-r from-transparent via-secondary to-transparent opacity-60"
+          aria-hidden="true"
+        ></div>
+        <div
+          class="absolute -top-20 -right-20 w-48 h-48 rounded-full pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+          style="background: radial-gradient(circle, color-mix(in srgb, var(--color-secondary) 10%, transparent) 0%, transparent 70%);"
+          aria-hidden="true"
+        ></div>
+
+        <!-- Category badge -->
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-surface-2 text-xs font-medium text-secondary border border-border-subtle mb-4 w-fit">
+          {cases.items[1].category}
+        </span>
+
+        <!-- Metric -->
+        <div class="mb-5">
+          <div class="text-4xl font-bold text-secondary leading-none">{cases.items[1].metric}</div>
+          <div class="text-xs text-muted mt-1">{cases.items[1].metric_label}</div>
+        </div>
+
+        <h3 class="text-lg font-semibold text-text leading-snug mb-4">
+          {cases.items[1].title}
+        </h3>
+
+        <div class="space-y-3 mb-5">
+          <div class="p-3 rounded-lg bg-surface-2 border border-border-subtle">
+            <p class="text-xs font-semibold text-muted uppercase tracking-wider mb-1">
+              {cases.challenge}
+            </p>
+            <p class="text-xs text-muted leading-relaxed">
+              {cases.items[1].challenge}
+            </p>
+          </div>
+          <div class="p-3 rounded-lg bg-surface-2 border border-border-subtle">
+            <p class="text-xs font-semibold text-accent uppercase tracking-wider mb-1">
+              {cases.impact}
+            </p>
+            <p class="text-xs text-muted leading-relaxed">
+              {cases.items[1].impact}
+            </p>
+          </div>
+        </div>
+
+        <!-- Tech stack -->
+        <div class="flex flex-wrap gap-1.5">
+          {cases.items[1].tech.map((tech) => (
+            <span class="px-2 py-0.5 text-xs font-medium text-muted border border-border-subtle rounded bg-bg">
+              {tech}
+            </span>
+          ))}
+        </div>
+      </article>
+
+      <!-- Stats strip -->
+      <div
+        data-reveal
+        data-reveal-delay="3"
+        class="lg:col-span-3 grid grid-cols-2 sm:grid-cols-4 gap-4"
+      >
+        {[
+          { value: '3+', label: lang === 'en' ? 'Years of experience' : 'Años de experiencia' },
+          { value: '20+', label: lang === 'en' ? 'Projects delivered' : 'Proyectos entregados' },
+          { value: '100%', label: lang === 'en' ? 'Client satisfaction' : 'Satisfacción de clientes' },
+          { value: '~40%', label: lang === 'en' ? 'Avg. reduction in load time' : 'Reducción promedio de carga' },
+        ].map((stat) => (
+          <div class="p-5 rounded-xl border border-border bg-surface text-center">
+            <div class="text-2xl font-bold gradient-text mb-1">{stat.value}</div>
+            <div class="text-xs text-muted">{stat.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
