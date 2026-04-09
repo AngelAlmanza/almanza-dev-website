@@ -18,8 +18,10 @@ export const es = {
     headline: 'Construyendo software que optimiza negocios y escala ideas.',
     subheadline:
       'Soy Angel, Ingeniero de Software especializado en automatización, sistemas empresariales y arquitecturas escalables. Transformo procesos manuales en activos digitales de alto impacto.',
-    cta_primary: 'Ver Catálogo de Productos',
-    cta_secondary: 'Hablemos de tu Proyecto',
+    cta_primary: "Hablemos de tu Proyecto",
+    cta_secondary: "Ver Catálogo de Productos",
+    // cta_primary: 'Ver Catálogo de Productos',
+    // cta_secondary: 'Hablemos de tu Proyecto',
     scroll_hint: 'Desplázate para explorar',
   },
   cases: {
@@ -37,9 +39,9 @@ export const es = {
         challenge:
           'Caos operacional por flujos de ticketing manual y altos costos de licenciamiento en el equipo de soporte.',
         impact:
-          'Eliminación total del ingreso manual de datos y reducción drástica de costos operativos usando Node.js y OAuth2 para integración CRM sin fricciones.',
+          'Reducción del 90% en el ingreso manual de datos y reducción de costos operativos usando Node.js y OAuth2 para integración CRM sin fricciones.',
         tech: ['Node.js', 'OAuth2', 'REST APIs', 'CRM'],
-        metric: '100%',
+        metric: '90%',
         metric_label: 'Tareas manuales eliminadas',
         size: 'large',
       },
@@ -147,7 +149,6 @@ export const es = {
   footer: {
     tagline: 'Construyendo software que optimiza negocios y escala ideas.',
     rights: 'Todos los derechos reservados.',
-    built_with: 'Construido con Astro & Tailwind CSS',
     links_title: 'Enlaces Rápidos',
     social_title: 'Conectar',
   },

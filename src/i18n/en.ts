@@ -18,8 +18,8 @@ export const en = {
     headline: 'Building software that optimizes business and scales ideas.',
     subheadline:
       "I'm Angel, a Software Engineer specialized in automation, enterprise systems, and scalable architectures. I transform manual processes into high-impact digital assets.",
-    cta_primary: 'View Product Catalog',
-    cta_secondary: "Let's Talk About Your Project",
+    cta_primary: "Let's Talk About Your Project",
+    cta_secondary: "View Product Catalog",
     scroll_hint: 'Scroll to explore',
   },
   cases: {
@@ -37,9 +37,9 @@ export const en = {
         challenge:
           'Operational chaos due to manual ticketing workflows and high licensing costs across the support team.',
         impact:
-          'Total elimination of manual data entry and drastic reduction in operational costs using Node.js and OAuth2 for seamless CRM integration.',
+          'Reduction of 90% in manual data entry and reduction in operational costs using Node.js and OAuth2 for seamless CRM integration.',
         tech: ['Node.js', 'OAuth2', 'REST APIs', 'CRM'],
-        metric: '100%',
+        metric: '90%',
         metric_label: 'Manual tasks eliminated',
         size: 'large',
       },
@@ -147,7 +147,6 @@ export const en = {
   footer: {
     tagline: 'Building software that optimizes business and scales ideas.',
     rights: 'All rights reserved.',
-    built_with: 'Built with Astro & Tailwind CSS',
     links_title: 'Quick Links',
     social_title: 'Connect',
   },
