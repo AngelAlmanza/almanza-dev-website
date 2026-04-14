@@ -1,6 +1,6 @@
 ---
-import '../styles/global.css';
-import type { Lang } from '../i18n/utils';
+import "../styles/global.css";
+import type { Lang } from "../i18n/utils";
 
 interface Props {
   title: string;
@@ -9,14 +9,17 @@ interface Props {
   ogImage?: string;
 }
 
-const { title, description, lang, ogImage = '/og-en.png' } = Astro.props;
+const { title, description, lang, ogImage = "/og-en.png" } = Astro.props;
 
-const siteOrigin = Astro.site?.toString().replace(/\/$/, '') || Astro.url.origin;
-const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const siteOrigin =
+  Astro.site?.toString().replace(/\/$/, "") || Astro.url.origin;
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 const canonicalURL = new URL(Astro.url.pathname, Astro.site).href;
 const enURL = `${siteOrigin}${base}/`;
 const esURL = `${siteOrigin}${base}/es/`;
 const ogImageURL = `${siteOrigin}${base}${ogImage}`;
+const faviconURL = `${siteOrigin}${base}/favicon.ico`;
+const faviconSVGURL = `${siteOrigin}${base}/favicon.svg`;
 ---
 
 <!doctype html>
@@ -48,8 +51,11 @@ const ogImageURL = `${siteOrigin}${base}${ogImage}`;
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImageURL} />
-    <meta property="og:locale" content={lang === 'en' ? 'en_US' : 'es_ES'} />
-    <meta property="og:locale:alternate" content={lang === 'en' ? 'es_ES' : 'en_US'} />
+    <meta property="og:locale" content={lang === "en" ? "en_US" : "es_ES"} />
+    <meta
+      property="og:locale:alternate"
+      content={lang === "en" ? "es_ES" : "en_US"}
+    />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -59,8 +65,8 @@ const ogImageURL = `${siteOrigin}${base}${ogImage}`;
     <meta name="twitter:image" content={ogImageURL} />
 
     <!-- Favicons -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href={faviconSVGURL} />
+    <link rel="icon" href={faviconURL} />
 
     <!-- Fonts: Inter via Google Fonts (non-blocking) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -84,14 +90,17 @@ const ogImageURL = `${siteOrigin}${base}${ogImage}`;
     </noscript>
 
     <!-- Structured Data -->
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Angel Almanza",
-      "jobTitle": "Solutions Engineer",
-      "url": siteOrigin,
-      "description": description,
-    })} />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Person",
+        name: "Angel Almanza",
+        jobTitle: "Solutions Engineer",
+        url: siteOrigin,
+        description: description,
+      })}
+    />
   </head>
   <body>
     <slot />
@@ -102,15 +111,15 @@ const ogImageURL = `${siteOrigin}${base}${ogImage}`;
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
-              entry.target.classList.add('revealed');
+              entry.target.classList.add("revealed");
               revealObserver.unobserve(entry.target);
             }
           });
         },
-        { threshold: 0.08, rootMargin: '0px 0px -50px 0px' }
+        { threshold: 0.08, rootMargin: "0px 0px -50px 0px" },
       );
 
-      document.querySelectorAll('[data-reveal]').forEach((el) => {
+      document.querySelectorAll("[data-reveal]").forEach((el) => {
         revealObserver.observe(el);
       });
     </script>
