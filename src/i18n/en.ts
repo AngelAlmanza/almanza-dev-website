@@ -15,12 +15,12 @@ export const en = {
   },
   hero: {
     label: 'Solutions Engineer · Full-Stack Developer',
-    headline: 'Building software that optimizes business and scales ideas.',
+    headline: 'Turning your ideas into scalable software and automated workflows.',
     subheadline:
-      "I'm Angel, a Software Engineer specialized in automation, enterprise systems, and scalable architectures. I transform manual processes into high-impact digital assets.",
-    cta_primary: "Let's Talk About Your Project",
-    cta_secondary: "View Product Catalog",
-    scroll_hint: 'Scroll to explore',
+      "I'm Angel, a Software Engineer dedicated to helping businesses eliminate manual tasks and build robust digital products that drive growth.",
+    cta_primary: "Start a Project",
+    cta_secondary: "View past solutions",
+    scroll_hint: 'Explore',
   },
   cases: {
     section_label: 'Success Cases',
@@ -96,24 +96,24 @@ export const en = {
     items: [
       {
         id: 'mvp',
-        name: 'MVP Development',
+        name: 'Custom Software Solutions',
         description:
-          'From idea to functional code in weeks, not months. Lean, iterative, and production-ready from day one.',
+          "I build solutions that live where your customers are: on the web, on mobile, or installed on their desktop. Software designed specifically to solve your business's unique problems.",
         icon: 'code',
       },
       {
         id: 'automation',
-        name: 'Process Automation',
+        name: 'Integrations and Process Automation',
         description:
-          'Connecting your tools — APIs, CRM, Webhooks — to eliminate repetitive work and reduce operational costs.',
+          'Tired of repetitive tasks? I sync your systems and automate your workflows so your team stops wasting time on manual work and focuses on what matters.',
         icon: 'automation',
       },
       {
-        id: 'consulting',
-        name: 'Technical Consulting',
+        id: 'mvp',
+        name: 'Digital Product Launch',
         description:
-          'Architecture auditing, database optimization, and code review. Actionable insights for your engineering team.',
-        icon: 'consulting',
+          'I turn your idea into a real, functional app in record time. I handle all the development so you can focus on growing your business.',
+        icon: 'consulting', // rocket
       },
     ],
   },
@@ -133,14 +133,14 @@ export const en = {
     section_title: "Let's work",
     section_title_accent: 'together.',
     description:
-      'Do you have a technical problem that needs an engineering solution? Let me know about your project and we will figure out the best path forward.',
+      "Have an idea in mind or a process that needs improvement? Share your vision with me, and I’ll take care of turning it into high-quality software.",
     name_label: 'Full Name',
     email_label: 'Email Address',
-    message_label: 'Tell me about your project',
+    message_label: 'How can I help you?',
     message_placeholder:
-      'Describe the problem you want to solve, your current stack, and timeline...',
-    submit: 'Send Message',
-    calendly: 'Schedule a Call',
+      "Tell me briefly about what you want to build or which process you’d like to automate. I’d love to hear about it!",
+    submit: 'Send my inquiry',
+    calendly: "I'd rather schedule a call",
     or: 'or',
     availability: 'Currently accepting new projects',
   },

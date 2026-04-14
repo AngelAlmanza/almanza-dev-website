@@ -15,14 +15,12 @@ export const es = {
   },
   hero: {
     label: 'Ingeniero de Soluciones · Desarrollador Full-Stack',
-    headline: 'Construyendo software que optimiza negocios y escala ideas.',
+    headline: 'Transformo tus ideas en software escalable y procesos automatizados.',
     subheadline:
-      'Soy Angel, Ingeniero de Software especializado en automatización, sistemas empresariales y arquitecturas escalables. Transformo procesos manuales en activos digitales de alto impacto.',
-    cta_primary: "Hablemos de tu Proyecto",
-    cta_secondary: "Ver Catálogo de Productos",
-    // cta_primary: 'Ver Catálogo de Productos',
-    // cta_secondary: 'Hablemos de tu Proyecto',
-    scroll_hint: 'Desplázate para explorar',
+      'Soy Angel, Ingeniero de Software. Ayudo a empresas y emprendedores a eliminar tareas manuales y crear productos digitales robustos que impulsan su crecimiento.',
+    cta_primary: "Iniciar un Proyecto",
+    cta_secondary: "Ver soluciones anteriores",
+    scroll_hint: 'Explorar',
   },
   cases: {
     section_label: 'Casos de Éxito',
@@ -97,25 +95,25 @@ export const es = {
     section_title_accent: 'a demanda.',
     items: [
       {
-        id: 'mvp',
-        name: 'Desarrollo de MVP',
+        id: 'custom',
+        name: 'Desarrollo de Software a Medida',
         description:
-          'De la idea al código funcional en semanas, no meses. Lean, iterativo y listo para producción desde el primer día.',
+          'Creo soluciones que viven donde tus clientes están: en la web, en el celular o instaladas en la computadora. Software diseñado específicamente para resolver los problemas de tu empresa.',
         icon: 'code',
       },
       {
         id: 'automation',
-        name: 'Automatización de Procesos',
+        name: 'Integraciones y Automatización de Procesos',
         description:
-          'Conectando tus herramientas — APIs, CRM, Webhooks — para eliminar trabajo repetitivo y reducir costos operativos.',
+          '¿Haces tareas repetitivas? Conecto tus sistemas y automatizo tus procesos para que tu equipo deje de perder tiempo en tareas manuales y se enfoque en lo que importa.',
         icon: 'automation',
       },
       {
-        id: 'consulting',
-        name: 'Consultoría Técnica',
+        id: 'mvp',
+        name: 'Lanzamiento de Productos Digitales',
         description:
-          'Auditoría de arquitectura, optimización de bases de datos y revisión de código. Insights accionables para tu equipo de ingeniería.',
-        icon: 'consulting',
+          'Transformo tu idea en una aplicación real y funcional en tiempo récord. Me encargo de todo el desarrollo para que tú solo te preocupes por hacer crecer tu negocio.',
+        icon: 'consulting', // rocket
       },
     ],
   },
@@ -135,14 +133,14 @@ export const es = {
     section_title: 'Trabajemos',
     section_title_accent: 'juntos.',
     description:
-      '¿Tienes un problema técnico que necesita una solución de ingeniería? Cuéntame sobre tu proyecto y encontraremos el mejor camino juntos.',
+      '¿Tienes una idea en mente o un proceso que necesita mejorar? Cuéntame tu visión y yo me encargo de convertirla en software de calidad.',
     name_label: 'Nombre Completo',
     email_label: 'Correo Electrónico',
-    message_label: 'Cuéntame sobre tu proyecto',
+    message_label: '¿En qué puedo ayudarte?',
     message_placeholder:
-      'Describe el problema que quieres resolver, tu stack actual y tiempos...',
-    submit: 'Enviar Mensaje',
-    calendly: 'Agendar una Llamada',
+      'Cuéntame brevemente qué quieres construir o qué proceso te gustaría automatizar. ¡Me encantará leerlo!',
+    submit: 'Enviar mi propuesta',
+    calendly: 'Prefiero agendar una llamada',
     or: 'o',
     availability: 'Actualmente aceptando nuevos proyectos',
   },
