@@ -4,7 +4,8 @@ import tailwindcss from "@tailwindcss/vite";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://angelalmanza.github.io/almanza-dev-website/",
+  site: "https://angelalmanza.github.io",
+  base: "/almanza-dev-website",
   i18n: {
     defaultLocale: "en",
     locales: ["en", "es"],

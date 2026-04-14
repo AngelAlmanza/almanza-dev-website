@@ -15,5 +15,6 @@ export function getAlternateLang(lang: Lang): Lang {
 
 /** Returns the URL for a given locale (homepage only for now) */
 export function getLocaleUrl(lang: Lang): string {
-  return lang === 'en' ? '/' : '/es/';
+  const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+  return lang === "en" ? `${base}/` : `${base}/es/`;
 }
